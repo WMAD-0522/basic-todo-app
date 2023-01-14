@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+
+        <h1>Add Todos</h1>
+
+        <form method="post" action="/todo">
+            <label for="title">Todo title</label>
+            <br>
+            <input type="text" name="title" placeholder="Title" />
+            <br>
+            <label for="description">Todo description</label>
+            <br>
+            <input type="text" name="description" placeholder="description" />
+            <br>
+            <label for="completed">Is completed ?</label>
+            <input type="checkbox" name="completed" />
+            <br>
+            <button type="submit">Add Todo</button>
+        </form>
+
+        <h1>Todo List</h1>
+
+        <ul>
+            <% for(let todo of todos) { %>
+                <li>
+                    <h3>
+                        <%= todo.title %>
+                    </h3>
+                    <p> <%= todo.description %></p>
+                    <p><span>Is Completed: <input type="checkbox" <%= todo.completed && "checked" %> /></span></p>
+                    <form action="/todos/<%= todo.id %>" method="post">
+                        <button type="submit">Delete</button>
+                    </form>
+                </li>
+            <% } %>
+        </ul>
+    </div>
+</body>
+</html>
